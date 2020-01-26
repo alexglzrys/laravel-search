@@ -60,7 +60,19 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $users->render() !!}
+
+                    {{-- 
+                        Añadir la cadena de consulta a los resultados de la paginación
+                        
+                        El solo invocar a $users->render() generaría el paginador, pero al momento de moverse
+                        por los resultados filtrados, estos automáticamente se resetearían; dato que cada
+                        boton del paginador, envía una nueva petición al servidor con variable page?, omitiendo la cadena de consulta generada por el formulario.
+
+                        En este sentido, anteponemos la cadena de consulta que tenemos escrita en la URL, a excepción de la variable page? (ya que nos interesa movernos a otra página diferente), la cual es añadida automáticamente por el paginador.
+
+                        De esta forma podemos movernos por nuestros resultados filtrados, a través del paginador
+                    --}}
+                    {!! $users->appends(request()->except('page'))->render() !!}
                 </div>
             </div>
         </div>
