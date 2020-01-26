@@ -15,15 +15,22 @@
                         
                         {{-- Declaración de formulario de busqueda y filtrado --}}
                         
-                        {!! Form::open(['route' => ['users.index'], 'method' => 'GET', 'class' => 'form-inline float-right my-3']) !!}
+                        {!! Form::open(['route' => 'users.index', 'method' => 'GET', 'class' => 'form-inline float-right my-3']) !!}
                             <div class="form-group">
-                                {!! Form::text('name', null, ['class' => 'form-control form-control-sm mr-1', 'placeholder' => 'Nombre']) !!}
+
+                                {{-- Recordar el valor del input a través de la variable request.
+                                    
+                                    Laravel recuerda esta info solo a través de redirecciones. Sin embargo, en este proyecto no se hace redirección tras enviar la consulta, por tanto nos valemos del mecanismo del request->get('variable_url') para recuperar y mostrar su valor. Pues al enviar el formulario, sus datos son enviados por GET, y quedan impresos en la URL. solo leémos su valor para rellenar nuevamente los campos
+                                    
+                                --}}
+                                
+                                {!! Form::text('name', request()->get('name'), ['class' => 'form-control form-control-sm mr-1', 'placeholder' => 'Nombre']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::text('email', null, ['class' => 'form-control form-control-sm mr-1', 'placeholder' => 'Email']) !!}
+                                {!! Form::text('email', request()->get('email'), ['class' => 'form-control form-control-sm mr-1', 'placeholder' => 'Email']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::text('bio', null, ['class' => 'form-control form-control-sm mr-1', 'placeholder' => 'Biografía']) !!}
+                                {!! Form::text('bio', request()->get('bio'), ['class' => 'form-control form-control-sm mr-1', 'placeholder' => 'Biografía']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::button('Buscar', ['class' => 'btn btn-primary btn-sm', 'type' => 'submit']) !!}

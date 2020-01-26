@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'bio'
     ];
 
     /**
@@ -36,4 +36,45 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // Query Scopes 
+    // Limitan o extienden el alcance de las consultas para el modelo donde se encuentren declaradas.
+
+    // Nos permiten construir metodos con consultas SQL personalizadas, cuyo contenido puede ser repetitivo para mas de un método que haga uso de este modelo. Esto ayuda a desinchar nuestros controladores y centralizar esa lógica repetitiva en un solo punto.
+
+    // Para invocarlos, solo hace falta hacer uso del metodo personalizado, sin el prefijo scope
+    // User::name('nombre')
+    // User::name('nombre')->email('dato')->bio('dato')->get()
+
+    // Lo anterior se traduce a:
+    /**
+     * User::where('name', 'LIKE', '%$nombre%')
+     *     ->where('email', 'LIKE', '%$email%')
+     *     ->where('bio', 'LIKE', '%bio%')
+     *     ->get()
+     */
+
+    // Si el queryScope no se ejecuta (no se cumple la condición), la consulta original no es modificada
+
+    public function scopeName($query, $name)
+    {
+        if($name) {
+            return $query->where('name', 'LIKE', "%$name%");
+        }
+    }
+
+    public function scopeEmail($query, $email)
+    {
+        if($email) {
+            return $query->where('email', 'LIKE', "%$email%");
+        }
+    }
+
+    public function scopeBio($query, $bio)
+    {
+        if($bio) {
+            return $query->where('bio', 'LIKE', "%$bio%");
+        }
+    }
 }
