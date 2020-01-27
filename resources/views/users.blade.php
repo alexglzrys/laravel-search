@@ -5,31 +5,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Laravel</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/080ce66068.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="container">
+        <div class="container py-3">
             <div class="row mt-4">
                 <div class="col-12 mb-3">
                     <div>
-                        <h1 class="float-left">Laravel Search</h1>
+                        <h3 class="d-inline"><i class="fab fa-searchengin"></i> Laravel Search</h3>
                         
                         {{-- Declaración de formulario de busqueda y filtrado --}}
                         
-                        {!! Form::open(['route' => 'users.index', 'method' => 'GET', 'class' => 'form-inline float-right my-3']) !!}
-                            <div class="form-group">
+                        {!! Form::open(['route' => 'users.index', 'method' => 'GET', 'class' => 'form-inline float-right']) !!}
+                            <div class="input-group">
 
                                 {{-- Recordar el valor del input a través de la variable request.
                                     
                                     Laravel recuerda esta info solo a través de redirecciones. Sin embargo, en este proyecto no se hace redirección tras enviar la consulta, por tanto nos valemos del mecanismo del request->get('variable_url') para recuperar y mostrar su valor. Pues al enviar el formulario, sus datos son enviados por GET, y quedan impresos en la URL. solo leémos su valor para rellenar nuevamente los campos
                                     
                                 --}}
-                                
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
                                 {!! Form::text('name', request()->get('name'), ['class' => 'form-control form-control-sm mr-1', 'placeholder' => 'Nombre']) !!}
                             </div>
-                            <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
                                 {!! Form::text('email', request()->get('email'), ['class' => 'form-control form-control-sm mr-1', 'placeholder' => 'Email']) !!}
                             </div>
-                            <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                </div>
                                 {!! Form::text('bio', request()->get('bio'), ['class' => 'form-control form-control-sm mr-1', 'placeholder' => 'Biografía']) !!}
                             </div>
                             <div class="form-group">
