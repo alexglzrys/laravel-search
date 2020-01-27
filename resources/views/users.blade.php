@@ -12,7 +12,11 @@
             <div class="row mt-4">
                 <div class="col-12 mb-3">
                     <div>
-                        <h3 class="d-inline"><i class="fab fa-searchengin"></i> Laravel Search</h3>
+                        <h3 class="d-inline">
+                            <a href="{{ route('users.index') }}" style="text-decoration: none">
+                                <i class="fab fa-searchengin"></i> Laravel Search
+                            </a>
+                        </h3>
                         
                         {{-- Declaración de formulario de busqueda y filtrado --}}
                         
