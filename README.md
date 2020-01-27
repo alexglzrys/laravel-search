@@ -16,7 +16,7 @@ Aplicación desarrollada con el Framework Laravel 6 que permite buscar, filtrar 
 - Framework CSS - Bootstrap 4.
 - Base de datos - MySQL 5.x.
 - Componente HTML/Form de LaravelCollective 6.x
-- Librería de Iconos - FontAwesoem
+- Librería de Iconos - FontAwesome
 
 #### Instalación
 Configurar permisos en el directorio storage de la aplicación
